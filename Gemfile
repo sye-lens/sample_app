@@ -68,3 +68,6 @@ group :test do
   gem "selenium-webdriver"
   gem 'minitest-reporters'
 end
+
+gem "sassc-rails", "~> 2.1"
+gem "bootstrap",   "~> 5.3"
