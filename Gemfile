@@ -70,4 +70,4 @@ group :test do
 end
 
 gem "sassc-rails", "~> 2.1"
-gem "bootstrap",   "~> 5.3"
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
