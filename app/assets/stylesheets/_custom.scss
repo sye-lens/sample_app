@@ -121,9 +121,17 @@ aside {
 
 .gravatar {
   float: left;
+  width: 100%;
+  margin-top: 45px;
   margin-right: 10px;
 }
 
 .gravatar_edit {
   margin-top: 15px;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
 }
