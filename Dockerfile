@@ -19,7 +19,9 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config libyaml-dev
+    apt-get install --no-install-recommends -y \
+      build-essential git libvips pkg-config libyaml-dev \
+      libpq-dev
 RUN gem install bundler -v 2.5.6
 
 # Install application gems
@@ -43,7 +45,10 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips libyaml-0-2 && \
+    apt-get install --no-install-recommends -y \
+        curl libsqlite3-0 libvips libyaml-0-2 \
+        libpq5 \
+    && \ 
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
