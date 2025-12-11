@@ -6,9 +6,9 @@
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
-  -moz-box-sizing:    border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
+  box-sizing: border-box;
 }
 
 /* universal */
@@ -28,13 +28,18 @@ textarea {
 .center {
   text-align: center;
   h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 }
 
 /* typography */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   line-height: 1;
 }
 
@@ -51,7 +56,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color:$gray-light;
+  color: $gray-light;
 }
 
 p {
@@ -80,24 +85,24 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
-  color:$gray-light;
+  color: $gray-light;
   a {
     color: $gray;
     &:hover {
       color: $gray-darker;
     }
   }
-small {
-  float: left;
-}
-ul {
-  float: right;
-  list-style: none;
-  li {
+  small {
     float: left;
-    margin-left: 15px;
   }
-}
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
 }
 @media (max-width: 800px) {
   footer {
@@ -165,7 +170,8 @@ aside {
 
 /* forms */
 
-input, textarea {
+input,
+textarea {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -206,4 +212,16 @@ input {
 
 .dropdown-menu.active {
   display: block;
+}
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
 }
