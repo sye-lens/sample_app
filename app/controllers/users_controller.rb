@@ -5,11 +5,12 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated
   end
   
   def new
@@ -20,16 +21,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # 保存の成功をここで扱う。
-      reset_session
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to user_url(@user)
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new', status: :unprocessable_entity
     end
   end
   
   def edit
+    puts "ユーザー #{logged_in_user}"
   end
 
   def update
@@ -61,7 +62,8 @@ class UsersController < ApplicationController
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
-        redirect_to login_url, status: :see_other
+        puts "てすと"
+        puts redirect_to login_url, status: :see_other
       end
     end
     # 正しいユーザーかどうか確認
