@@ -75,7 +75,7 @@ gem 'rails-controller-testing'
 gem "bcrypt","3.1.18"
 gem 'faker'
 gem 'will_paginate', '~> 4.0'
-#gem 'will_paginate-bootstrap-style'
+# gem 'will_paginate-bootstrap-style'
 
 group :production do
     gem "pg", "1.5"
