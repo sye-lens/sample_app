@@ -80,3 +80,5 @@ gem 'will_paginate', '~> 4.0'
 group :production do
     gem "pg", "1.5"
 end
+
+gem "sqlite3", group: [:development, :test]
