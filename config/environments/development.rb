@@ -28,7 +28,7 @@ Rails.application.configure do
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
-    config.action_controller.perform_caching = false
+    config.action_controller.perform_caching =  true
 
     config.cache_store = :null_store
   end
@@ -74,5 +74,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Raise error when a before_action's only/except options reference missing actions
-  config.action_controller.raise_on_missing_callback_actions = true
+  config.action_controller.raise_on_missing_callback_actions = false
 end
