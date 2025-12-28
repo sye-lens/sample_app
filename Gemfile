@@ -79,6 +79,10 @@ gem 'will_paginate', '~> 4.0'
 # gem 'will_paginate-bootstrap-style'
 
 group :production do
+    gem "pg"
+end
+
+group :production do
   gem "aws-sdk-s3", "1.114.0", require: false
 end
 
