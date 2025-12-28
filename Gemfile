@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.9"
 
@@ -78,5 +79,8 @@ gem 'will_paginate', '~> 4.0'
 # gem 'will_paginate-bootstrap-style'
 
 group :production do
-    gem "pg", "1.5"
+  gem "aws-sdk-s3", "1.114.0", require: false
 end
+
+gem 'active_storage_validations'
+gem "image_processing"
