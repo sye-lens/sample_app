@@ -15,7 +15,7 @@ class PasswordResetsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = "Email address not found"
-      render 'new', status: :unprocessable_entity
+      render 'new', status: :unprocessable_content
     end
   end
 
@@ -25,7 +25,7 @@ class PasswordResetsController < ApplicationController
   def update
     if params[:user][:password].empty?                  # （3）への対応
       @user.errors.add(:password, "can't be empty")
-      render 'edit', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_content
     elsif @user.update(user_params)                     # （4）への対応
       @user.forget
       reset_session
@@ -34,7 +34,7 @@ class PasswordResetsController < ApplicationController
       flash[:success] = "Password has been reset."
       redirect_to @user
     else
-      render 'edit', status: :unprocessable_entity      # （2）への対応
+      render 'edit', status: :unprocessable_content      # （2）への対応
     end
   end
 
