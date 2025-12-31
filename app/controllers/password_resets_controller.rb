@@ -51,10 +51,21 @@ class PasswordResetsController < ApplicationController
 
     # 正しいユーザーかどうか確認する
     def valid_user
-      unless (@user && @user.activated? &&
-              @user.authenticated?(:reset, params[:id]))
-        redirect_to root_url
+      Rails.logger.error "[valid_user] start"
+
+      Rails.logger.error "[valid_user] params[:id]=#{params[:id]}"
+      Rails.logger.error "[valid_user] user present? #{@user.present?}"
+
+      if @user
+        Rails.logger.error "[valid_user] activated? #{@user.activated?}"
+        Rails.logger.error "[valid_user] reset_digest present? #{@user.reset_digest.present?}"
+        Rails.logger.error "[valid_user] authenticated? #{@user.authenticated?(:reset, params[:id])}"
       end
+
+      ok = @user && @user.activated? && @user.authenticated?(:reset, params[:id])
+      Rails.logger.error "[valid_user] result=#{ok}"
+
+      redirect_to root_url unless ok
     end
     # 期限切れかどうかを確認する
     def check_expiration
