@@ -51,19 +51,18 @@ class PasswordResetsController < ApplicationController
 
     # 正しいユーザーかどうか確認する
     def valid_user
-      Rails.logger.error "[valid_user] start"
+      rid = request.request_id
 
-      Rails.logger.error "[valid_user] params[:id]=#{params[:id]}"
-      Rails.logger.error "[valid_user] user present? #{@user.present?}"
+      user_present = @user.present?
+      activated    = @user&.activated?
+      auth         = @user ? @user.authenticated?(:reset, params[:id]) : false
+      ok           = user_present && activated && auth
 
-      if @user
-        Rails.logger.error "[valid_user] activated? #{@user.activated?}"
-        Rails.logger.error "[valid_user] reset_digest present? #{@user.reset_digest.present?}"
-        Rails.logger.error "[valid_user] authenticated? #{@user.authenticated?(:reset, params[:id])}"
-      end
-
-      ok = @user && @user.activated? && @user.authenticated?(:reset, params[:id])
-      Rails.logger.error "[valid_user] result=#{ok}"
+      Rails.logger.error(
+        "[valid_user #{rid}] method=#{request.request_method} path=#{request.fullpath} " \
+        "email_param=#{params[:email]} uid=#{@user&.id} uemail=#{@user&.email} " \
+        "present=#{user_present} activated=#{activated} auth=#{auth} ok=#{ok}"
+      )
 
       redirect_to root_url unless ok
     end
